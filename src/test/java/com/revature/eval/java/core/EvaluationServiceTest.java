@@ -64,6 +64,9 @@ public class EvaluationServiceTest {
 		assertEquals(expected, evaluationService.acronym(phrase));
 	}
 
+	/**
+	 * 
+	 */
 	@Test
 	public void punctuation() {
 		final String phrase = "First In, First Out";
@@ -74,7 +77,7 @@ public class EvaluationServiceTest {
 	@Test
 	public void NonAcronymAllCapsWord() {
 		final String phrase = "GNU Image Manipulation Program";
-		final String expected = "tGIMP";
+		final String expected = "GIMP";
 		assertEquals(expected, evaluationService.acronym(phrase));
 	}
 

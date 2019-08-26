@@ -1,7 +1,11 @@
 package com.revature.eval.java.core;
 
 import java.lang.reflect.Array;
+import java.time.Duration;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.time.temporal.Temporal;
+import java.time.temporal.TemporalUnit;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -11,6 +15,8 @@ import java.util.Set;
 import java.util.regex.Pattern;
 
 public class EvaluationService {
+
+	private static final TemporalUnit SECONDS = null;
 
 	/**
 	 * 1. Without using the StringBuilder or StringBuffer class, write a method that
@@ -416,15 +422,12 @@ public class EvaluationService {
 	 * @return
 	 */
 	public String toPigLatin(String string) {
-		// TODO Write an implementation for this method declaration
-    	char[] vowels = {'a','e','i','o','u'};
-		String[] wordList = string.trim().split(" ");
-//		for(String word: wordList) {
-//			System.out.println(word);
-//		}
+
+		String[] wordList = string.trim().split(" ");	
 		String[] pigLatin = new String[wordList.length];
+		
 		for(int i = 0; i < wordList.length; i++) {
-			if(String.valueOf(Character.toLowerCase(wordList[i].charAt(0))).matches("[aeiou]")) {
+			if(String.valueOf(Character.toLowerCase(wordList[i].charAt(0))).matches("[aeiou]")) {  //check first letter of word is vowel or not
 	             pigLatin[i] = wordList[i] + "ay";
 			}
 			else {
@@ -442,12 +445,12 @@ public class EvaluationService {
 							  indexVowel = j +1;
 						}
 						else indexVowel = j;
-						System.out.println(String.valueOf(indexVowel));
+//						System.out.println(String.valueOf(indexVowel));
 						break;
 					}
 					else if(String.valueOf(Character.toLowerCase(wordList[i].charAt(j))).matches("[aeio]")) {
 						indexVowel = j; 
-						System.out.println(String.valueOf(indexVowel));
+//						System.out.println(String.valueOf(indexVowel));
 						break;
 					}			
 				    
@@ -461,7 +464,7 @@ public class EvaluationService {
 		for(String word: pigLatin) {
 			result.append(word).append(' ');
 		}
-		System.out.println(result.toString().trim());
+//		System.out.println(result.toString().trim());
 		return result.toString().trim();
 	}
 
@@ -563,17 +566,18 @@ public class EvaluationService {
 		public String rotate(String string) {
 			
 			String alphabet ="abcdefghijklmnopqrstuvwxyz";
-			String newAlphabet =alphabet.substring(key) + alphabet.substring(0, key-1);
+			String newAlphabet =alphabet.substring(key) + alphabet.substring(0, key);
 	
-			System.out.println(newAlphabet);
+//			System.out.println(newAlphabet);
 			
 			char[] strArr = string.toCharArray() ;
 			char[] resultArr = new char[strArr.length];
+//			System.out.println(strArr.length);
 						
 			
 			for(int index = 0; index < strArr.length; index++) {
 				
-				System.out.println(String.valueOf(index));
+//				System.out.println(String.valueOf(index));
 			
 				if(Character.isLetter(strArr[index])) {				
 				    if(Character.isUpperCase(strArr[index])) {
@@ -584,16 +588,16 @@ public class EvaluationService {
 					      resultArr[index] = newAlphabet.charAt(alphabet.indexOf(strArr[index]));
 				    }
 					
-				    System.out.println(String.valueOf(resultArr[index]));	
+//				    System.out.println(String.valueOf(resultArr[index]));	
 			   }
 				
 				
 			   else {
 				   resultArr[index] = strArr[index];
-				   System.out.println(String.valueOf(resultArr[index]));
+//				   System.out.println(String.valueOf(resultArr[index]));
 			 }
 	      }
-		  System.out.println(String.valueOf(resultArr));
+//		  System.out.println(String.valueOf(resultArr));
 		  return String.valueOf(resultArr);
 	   }
 	}
@@ -612,6 +616,9 @@ public class EvaluationService {
 	 */
 	public int calculateNthPrime(int i) {
 		// TODO Write an implementation for this method declaration
+		if(i < 1) {
+			throw new IllegalArgumentException("IllegalArgumentsException"); 
+		}
 		int counter = 1;
 		int num =2;
 		while(counter != i) {
@@ -804,7 +811,29 @@ public class EvaluationService {
 	 */
 	public Temporal getGigasecondDate(Temporal given) {
 		
-		return null;
+		long life = (long) Math.pow(10, 9);
+		
+		Duration lifeDuration = Duration.ofSeconds(life);
+		
+		LocalDateTime endTime = null;
+		
+//		System.out.println(given.toString());
+		
+		if(given.toString().length()>11) {
+			LocalDateTime time1 = (LocalDateTime) given;
+			endTime = (LocalDateTime) lifeDuration.addTo(time1);
+			
+		}
+		
+		else {
+			LocalDate time2 = (LocalDate) given;
+			LocalDateTime time3 = time2.atStartOfDay();
+			endTime = (LocalDateTime) lifeDuration.addTo(time3);
+		} 
+		
+//		System.out.println(endTime.toString());
+		
+		return endTime;
 	}
 
 	/**
@@ -974,7 +1003,7 @@ public class EvaluationService {
 				         }
 			   }	
 		}
-		System.out.println(operand[0]+" "+ operand[1]+" "+operator);
+//		System.out.println(operand[0]+" "+ operand[1]+" "+operator);
 		switch(operator) {
 		       case "plus":
 			          result = Integer.parseInt(operand[0]) + Integer.parseInt(operand[1]);
