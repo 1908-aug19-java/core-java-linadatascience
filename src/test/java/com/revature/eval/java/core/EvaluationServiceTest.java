@@ -74,7 +74,7 @@ public class EvaluationServiceTest {
 	@Test
 	public void NonAcronymAllCapsWord() {
 		final String phrase = "GNU Image Manipulation Program";
-		final String expected = "GIMP";
+		final String expected = "tGIMP";
 		assertEquals(expected, evaluationService.acronym(phrase));
 	}
 
