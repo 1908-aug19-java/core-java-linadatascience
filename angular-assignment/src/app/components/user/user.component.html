@@ -1,0 +1,24 @@
+<h1>User Component</h1>
+
+<div class='container'>
+    <div>
+        <h3>Click Button to Get All Users!</h3>
+        <button class='btn btn-info' (click)='getAllUsers()'>All Users</button>
+    </div>
+    <table *ngIf="users.length>0">
+        <tr>
+            <th>Name</th>
+            <th>Email</th>
+            <th>Phone Number</th>
+            <th>Company</th>
+        </tr>
+        <tr *ngFor="let user of users" routerLink ='/users/{{user.id}}'>
+            <td>{{user.name}}</td>
+            <td>{{user.email}}</td>
+            <td>{{user.phone}}</td>
+            <td>{{user.company.name}}</td>
+        </tr>
+    </table>
+
+</div>
+

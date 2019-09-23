@@ -1,0 +1,31 @@
+<!-- <div [ngSwitch]='time'>
+    <span *ngSwitchCase="'night'">It is night time</span>
+    <span *ngSwitchCase="'day'">It is day time</span>
+    <span *ngSwitchDefault >It is ? time</span>
+</div> -->
+<h1>Profile Component</h1>
+<!-- <div (click)='changeCondition()'>
+        <p *ngIf='condition'>Condition is met</p>
+        <p *ngIf='!condition'>Condition is not met</p>
+</div> -->
+
+<div>
+    <button class='btn btn-show' (click)=changeCondition()>{{buttonMsg}}</button>
+    <div *ngIf='condition'>
+        <h3>this is user list</h3>
+        <table >
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Email</th>
+            </tr> 
+            <tr *ngFor="let user of users">
+                <td>{{user.id}}</td>
+                <td>{{user.name}}</td>
+                <td>{{user.age}}</td>
+                <td>{{user.email}}</td>
+            </tr>
+        </table>
+    </div>
+</div>

@@ -1,0 +1,18 @@
+<h1>Table Component</h1>
+<table class='table-control' id='people-table'>
+    <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Birthday</th>
+    </tr>
+    <tr *ngFor="let people of peopleArr">
+        <td *ngIf='!condition'>{{ people.firstName }} {{ people.lastName }}</td>
+        <td *ngIf='condition'>{{ people.firstName | titlecase }} {{ people.lastName | titlecase }}</td>
+        <td>{{people.email}}</td>
+        <td *ngIf="!condition">{{ people.birthday }} </td>
+        <td *ngIf="condition">{{ people.birthday | date:fulltDate }} </td>
+    </tr>
+</table>
+ <br>   
+ <button class='pipe-control' (click)='changeCondition()'>Toggle Pipe</button>   
+    

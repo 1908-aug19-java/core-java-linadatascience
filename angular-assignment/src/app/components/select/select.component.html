@@ -1,0 +1,27 @@
+<h1>Select Component</h1>
+
+<form class='form-control' >    
+    <ul class='selectlist'>
+        <li>
+            <label><input type ='radio' [(ngModel)]="typeSelected" name='typeSelected' value='animals'>Animals</label>
+        </li>
+        <li>
+            <label><input type ='radio' [(ngModel)]="typeSelected" name='typeSelected' value='colors'>Colors</label>
+        </li>
+        <li>
+            <label><input type ='radio' [(ngModel)]="typeSelected" name='typeSelected' value='days'>Days</label> 
+        </li>       
+    </ul>
+</form>
+<div id='displaylist'>
+    <ul  *ngIf="typeSelected=='animals'">
+        <li *ngFor="let animal of animals" [value]='animal'>{{animal}}</li>
+    </ul>
+    <ul  *ngIf="typeSelected=='colors'">
+            <li *ngFor="let color of colors" [value]='color'>{{color}}</li>
+    </ul>
+    <ul  *ngIf="typeSelected=='days'">
+            <li *ngFor="let day of days" [value]='day'>{{day}}</li>
+    </ul>
+</div>
+
